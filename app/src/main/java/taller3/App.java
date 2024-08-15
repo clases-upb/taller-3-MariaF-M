@@ -6,7 +6,14 @@ package taller3;
 public class App {
 
    public static void main(String[] args) {
-   
+
+      System.out.println(Escribir_asc(4, 3, 2));
+      System.out.println(Obtener_cifras(10));
+      System.out.println(Clasificar_char('a'));
+      System.out.println(Hallar_division_exacta(10, 5));
+      System.out.println(Consultar_hab((byte)2, "AA"));
+      System.out.println(Obtener_obs(true, false, false));
+      System.out.println(Conocer_invitacion("verde"));
 
    }
 
@@ -22,7 +29,35 @@ public class App {
     * el mensaje: "Ocurrió un error inesperado".
     */
 
+    public static String Escribir_asc(int n1, int n2, int n3){
 
+      try {
+
+         if (n1 > n2 && n1 > n3 && n2 < n1 && n2 > n3) {
+            return n1 + " - " + n2 + " - " + n3;         
+         }
+         else if (n1 > n2 && n1 > n3 && n3 < n1 && n3 > n2) {
+            return n1 + " - " + n3 + " - " + n2; 
+         }
+         if (n2 > n1 && n2 > n3 && n1 < n2 && n1 > n3) {
+            return n2 + " - " + n1 + " - " + n3;         
+         }
+         else if (n2 > n1 && n2 > n3 && n3 < n2 && n3 > n1) {
+            return n2 + " - " + n3 + " - " + n1; 
+         }
+         if (n3 > n1 && n3 > n2 && n2 < n3 && n2 > n1) {
+            return n3 + " - " + n2 + " - " + n1;         
+         }
+         else if (n3 > n1 && n3 > n2 && n1 < n3 && n1 > n2) {
+            return n3 + " - " + n1 + " - " + n2; 
+         }
+         else 
+            return "Error: La función no considera números iguales";
+      } 
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+    }
 
    /*
     * 2. Construya un algoritmo e implemente la función en Java Obtener_cifras que
@@ -33,7 +68,37 @@ public class App {
     * 
     */
 
+   public static byte Obtener_cifras(int n){
 
+      try {
+         final byte r1 = 0, r2 = 1, r3 = 2, r4 = 3, r5 = 4, r6 = 5;
+         final int max = 50000, min = 0, min2 = 10, min3 = 100, min4 = 1000, min5 = 10000;
+
+         if (n < min && n > max)
+            return r1;
+
+         if (n >= min && n < min2){
+            return r2;
+         }
+         else if (n >= min2 && n < min3){
+            return r3;
+         }
+         else if (n >= min3 && n < min4){
+            return r4;
+         }  
+         else if (n >= min4 && n < min5){
+            return r5;
+         }
+         else if (n >= min5 && n <= max){
+            return r6;
+         }
+         else
+            return 0;
+      } 
+      catch (Exception e) {
+         return -1;
+      }
+   }
 
    /*
     * 3. Construya un algoritmo e implemente la función en Java Clasificar_char que
@@ -49,7 +114,26 @@ public class App {
     * 
     */
 
+   public static String Clasificar_char(char caracter){
 
+      try {
+         if (caracter <= 'z' && caracter >= 'a' || caracter <= 'Z' && caracter >= 'A'){
+            return "ES LETRA";
+         }
+         else if (caracter <= '9' && caracter >= '0'){
+            return "ES NUMERO";
+         }
+         else if (caracter <= 47 && caracter >= 33 || caracter <= 64 && caracter >= 58 || caracter <= 96 && caracter >= 91 || caracter >= 123 && caracter <= 254){
+            return "ESPECIAL";
+         }
+         else {
+            return "Ocurrió un error inesperado";
+         }
+      } 
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
 
    /*
     * 
@@ -70,7 +154,24 @@ public class App {
     * 
     */
 
-   
+   public static String Hallar_division_exacta(int n1, int n2){
+
+      byte min = 0;
+      if (n1 <= min|| n2 <= min)
+         return "NO SE ADMITE CERO O NEGATIVOS";
+
+      try {
+
+         if (n1%n2==min){
+            return "DIVISION EXACTA";
+         }
+         else
+            return "DIVISION NO EXACTA";
+      }
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
 
    /*
     * 5. En la siguiente tabla se encuentra la información de las habitaciones de
@@ -97,8 +198,35 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
+   public static String Consultar_hab(byte nro_camas, String AA_VE){
 
-   
+      byte min_c = 1, med_c = 2, max_c = 3;
+      if (nro_camas < min_c && nro_camas > max_c || AA_VE != "AA" && AA_VE != "VE")
+         return "DATOS NO VÁLIDOS";
+
+      try {
+
+         if (nro_camas == min_c && AA_VE == "VE" ){
+            return "102";
+         }
+         else if (nro_camas == med_c && AA_VE == "AA" ){
+            return "101|301";
+         }
+         else if (nro_camas == med_c && AA_VE == "VE" ){
+            return "202";
+         }
+         else if (nro_camas == max_c && AA_VE == "AA" ){
+            return "201";
+         }
+         else 
+            return "Ocurrió un error inesperado";
+
+      } 
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
+
    /*
     * 
     * 6. Un restaurante vende 3 platos. Si el cliente solicita el plato 1, le dan
@@ -114,15 +242,31 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
+   public static String Obtener_obs(boolean p1, boolean p2, boolean p3){
 
+      try {
 
-
-
-
+         if (p1 == true && p2 == false && p3 == false){
+            return "POSTRE";
+         }
+         else if (p1 == true && p2 == true && p3 == false){
+            return "BEBIDA";
+         }
+         else if (p1 == true && p2 == true && p3 == true){
+            return "BEBIDA Y POSTRE";
+         }
+         else 
+            return "PLATOS NO VÁLIDOS";
+         
+      } 
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
 
    /*
     * 7. Un grupo de amigos hace un sorteo semanalmente con pelotas de ping pong,
-    * para saber quién invita y a qué  la próxima salida.
+    * para saber quién invita y a qué la próxima salida.
     * Las opciones dependen del color que sacan en cada bola y son:
     * 
     * verde: Invita a las cervezas
@@ -142,3 +286,30 @@ public class App {
     * 
     */
 
+   public static String Conocer_invitacion(String color_bola){
+
+      try {
+
+         if (color_bola == "verde"){
+            return "Invita a las cervezas";
+         }
+         else if (color_bola == "azul"){
+            return "Invita a la pizza";
+         }
+         else if (color_bola == "rojo"){
+            return "Invita al postre";
+         }
+         else if (color_bola == "amarillo"){
+            return "Paga el parqueadero de todos";
+         }
+         else if (color_bola == "blanco" || color_bola == "negro"){
+            return "Vaya y disfrute";
+         }
+         else 
+            return "Error en el color";
+      } 
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
+}
